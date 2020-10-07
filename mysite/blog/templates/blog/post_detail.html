@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% block  content %}
+    <div class="">
+        <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+        <h1>{{post.title}}</h1>
+        <span> {{post.author}} | {{post.publish_date}}</span>
+        <p>{{post.text}}</p>
+    </div>
+{% endblock  %}
