@@ -2,6 +2,9 @@
 {% block  content %}
     <div class="">
         <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+        {% if user.is_authenticated %}
+            <a class="waves-effect waves-light btn" href="{% url 'post_edit' pk=post.pk %}" >Edit</a>
+        {% endif %}
         <h1>{{post.title}}</h1>
         <span> {{post.author}} | {{post.publish_date}}</span>
         <p>{{post.text}}</p>
