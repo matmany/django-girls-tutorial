@@ -20,9 +20,13 @@
       <a href="{% url 'post_list' %}" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
       {% if user.is_authenticated%}
+        <li><p class="top-menu">Hello {{user.username}}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p></li>
         <li><a href="{% url 'post_new' %}">New Post</a></li>
         <li><a href="{% url 'post_draft_list' %}" >Draft List</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
       {% endif %}
+
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>

@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block  content %}
-    <div class="">
+    <div class="row">
         <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
         {% if user.is_authenticated %}
             <a class="waves-effect waves-light btn" href="{% url 'post_edit' pk=post.pk %}" >Edit</a>
@@ -12,5 +12,24 @@
         <h1>{{post.title}}</h1>
         <span> {{post.author}} | {{post.publish_date}}</span>
         <p>{{post.text}}</p>
+    </div>
+    <div class="row">
+         <a class="waves-effect waves-light btn" href="{% url 'add_comment_to_post' pk=post.pk%}">Comentar</a>
+         <ul class="collection">
+          {% for comment in post.comments.all %}
+            <li class="collection-item avatar">
+            {% if not comment.approved_comment %}
+                <a class="waves-effect waves-light btn red" href="{% url 'comment_remove' pk=comment.pk %}">Remover</a>
+                <a class="waves-effect waves-light btn green" href="{% url 'comment_approve' pk=comment.pk %}">Aceitar</a>
+            {% endif %}
+                <img src="https://pm1.narvii.com/7418/ca9ce8797891a2a7999f71e4426200bd2cd51007r1-623-618v2_128.jpg" alt="" class="circle">
+                <span class="title">{{comment.author}}</span>
+                <p>{{comment.text|linebreaks}}</p>
+                <span>{{comment.created_date}}</span>
+            </li>
+        {% empty %} 
+            <p>No comments here yet</p>
+        {% endfor %}
+         </ul>
     </div>
 {% endblock  %}
