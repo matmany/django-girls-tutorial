@@ -35,7 +35,7 @@ def post_detail(request, pk):
        Uma instancia :model:`blog.Post`.
 
     ``pk``
-        E a chave identificadora do post no banco.
+        Uma Key de :model:`blog.Post`.
 
     **Template:**
 
@@ -61,10 +61,10 @@ def post_new(request):
         Uma instancia :model:`blog.Post`.
 
     ``form``
-        Uma instancia :form:`blog.forms.PostForm`.
-
+        Uma instancia de formulario `blog.forms.PostForm`.
+ 
     ``pk``
-        E a chave identificadora do post no banco.        
+        Uma Key de :model:`blog.Post`.        
 
 
     **Templates:**
@@ -103,10 +103,10 @@ def post_edit(request, pk):
         Uma instancia :model:`blog.Post`.
 
     ``form``
-        Uma instancia :form:`blog.forms.PostForm`.
+        Uma instancia de formulario `blog.forms.PostForm`.
 
     ``pk``
-        E a chave identificadora do post no banco.  
+        Uma Key de :model:`blog.Post`.  
 
     **Template:**
 
@@ -188,7 +188,7 @@ def add_comment_to_post(request, pk):
     **Context**
 
     ``form``
-        Uma instancia `blog.forms.CommentForm`
+        Uma instancia de formulario `blog.forms.CommentForm`
 
     ``pk``
         Uma Key de :model:`blog.Post`.
