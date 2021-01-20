@@ -6,7 +6,11 @@
         <div class="col s12 m6">
           <div class="card">
             <div class="card-image">
-              <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+              {% if  post.img_url%}
+                <img src={{post.img_url}}>
+              {% else %}
+                <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+              {% endif %}              
               <span class="card-title">{{post.title}}</span>
               <a href="{% url 'post_detail' pk=post.pk %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>

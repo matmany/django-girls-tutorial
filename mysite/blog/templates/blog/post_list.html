@@ -5,7 +5,11 @@
         <div class="col s12 m6">
           <div class="card">
             <div class="card-image">
-              <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+              {% if  post.img_url%}
+                <img src={{post.img_url}}>
+              {% else %}
+                <img src="https://freakonomics.com/wp-content/uploads/2011/08/dawn.jpg">
+              {% endif %}
               <span class="card-title">{{post.title}}</span>
               <a href="{% url 'post_detail' pk=post.pk %}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
             </div>
@@ -14,6 +18,24 @@
             </div>
             <span> {{post.author}} | {{post.publish_date}} | {{post.approved_comments.count}}</span>
           </div>
+        </div>
+        <div class="col s12 m6">
+          <ul class="collection">
+          {% for comment in post.comments.all %}
+            <li class="collection-item avatar">
+            {% if not comment.approved_comment %}
+                <a class="waves-effect waves-light btn red" href="{% url 'comment_remove' pk=comment.pk %}">Remover</a>
+                <a class="waves-effect waves-light btn green" href="{% url 'comment_approve' pk=comment.pk %}">Aceitar</a>
+            {% endif %}
+                <img src="https://pm1.narvii.com/7418/ca9ce8797891a2a7999f71e4426200bd2cd51007r1-623-618v2_128.jpg" alt="" class="circle">
+                <span class="title">{{comment.author}}</span>
+                <p>{{comment.text|linebreaks}}</p>
+                <span>{{comment.created_date}}</span>
+            </li>
+        {% empty %} 
+            <p>No comments here yet</p>
+        {% endfor %}
+         </ul>
         </div>
       </div>
   {% endfor %}

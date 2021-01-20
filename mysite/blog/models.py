@@ -6,7 +6,7 @@ from django.utils import timezone
 class Post(models.Model):
     """
     Armazena um unico Post, se relaciona com
-    :model: `auth.User`. 
+    :model:`auth.User`. 
 
     Para publicar o Post é preciso executar a função publish()
     
@@ -14,8 +14,10 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, help_text="Nome ou Pseudónimo do Usuario")
     title = models.CharField(help_text="Titulo do Post",max_length=200)
     text = models.TextField(help_text="Texto do Post")
+    img_url = models.TextField(help_text="URL da img", null = True, blank = True )
     created_date = models.DateTimeField(help_text="Data de criação do Post",default=timezone.now)
     publish_date = models.DateTimeField(help_text="Data de publicação do Post",blank = True, null = True)
+    
 
     def publish(self):
         """Publica o post. Atribuindo a hora e data atual ao `publish_date`.
@@ -47,6 +49,7 @@ class Comment(models.Model):
     """
     post = models.ForeignKey("blog.Post", on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(help_text="Nome ou Pseudónimo do autor",max_length=200)
+    avatar_url = models.TextField(help_text="URL da img",  null = True, blank = True)
     text = models.TextField(help_text="Texto do Comentario")
     created_date = models.DateTimeField(help_text="Data de criação do Comentario",default=timezone.now)
     approved_comment = models.BooleanField(help_text="Estado de aprovação do comentario",default=False)
